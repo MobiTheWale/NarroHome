@@ -2,9 +2,10 @@ import { Component } from '@angular/core';
 import { eventRoute, homeRoute, impressumRoute, notFoundRoute, photosRoute, privacyPolicyRoute } from '../../routes.constants';
 
 @Component({
-  selector: 'app-navbar',
-  templateUrl: './navbar.component.html',
-  styleUrl: './navbar.component.scss',
+    selector: 'app-navbar',
+    templateUrl: './navbar.component.html',
+    styleUrl: './navbar.component.scss',
+    standalone: false
 })
 export class NavbarComponent {
   public Routes = {
