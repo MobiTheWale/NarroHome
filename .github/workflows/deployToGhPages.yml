@@ -6,7 +6,7 @@ on:
       - main
 
 permissions:
-  contents: write   # <<--- wichtig, sonst 403 Fehler beim Push!
+  contents: write # <<--- wichtig, sonst 403 Fehler beim Push!
 
 jobs:
   deploy:
@@ -19,8 +19,8 @@ jobs:
       - name: Setup Node.js
         uses: actions/setup-node@v3
         with:
-          node-version: '18'
-          cache: 'npm'
+          node-version: "22.12.0"
+          cache: "npm"
           cache-dependency-path: Frontend/package-lock.json
 
       - name: Install dependencies
