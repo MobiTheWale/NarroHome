@@ -1,4 +1,4 @@
-import { Component,Input, OnDestroy, OnInit, HostListener  } from '@angular/core';
+import { Component,Input,HostListener  } from '@angular/core';
 import { interval, Subscription } from 'rxjs';
 import { MatIcon } from '@angular/material/icon';
 import { MatCard } from '@angular/material/card';
