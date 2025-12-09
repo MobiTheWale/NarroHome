@@ -1,0 +1,18 @@
+﻿namespace NarroWebService.DataTransferObjects
+{
+    public class PhotoDto
+    {
+        public Guid Id { get;}
+        public string Path
+        {
+            get;
+            set;
+        }
+
+        public string FallbackText
+        {
+            get;
+            set;
+        }
+    }
+}
