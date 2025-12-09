@@ -1,8 +1,9 @@
 import { Component } from '@angular/core';
 @Component({
-  selector: 'app-event',
-  templateUrl: './event.component.html',
-  styleUrl: './event.component.scss',
+    selector: 'app-event',
+    templateUrl: './event.component.html',
+    styleUrl: './event.component.scss',
+    standalone: false
 })
 export class EventComponent {
 

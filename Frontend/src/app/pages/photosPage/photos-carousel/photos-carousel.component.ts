@@ -1,14 +1,13 @@
-import { Component,Input, OnDestroy, OnInit, HostListener  } from '@angular/core';
+import { Component,Input,HostListener  } from '@angular/core';
 import { interval, Subscription } from 'rxjs';
 import { MatIcon } from '@angular/material/icon';
 import { MatCard } from '@angular/material/card';
-import { CommonModule } from '@angular/common';
+
 @Component({
-  selector: 'photos-carousel',
-  standalone: true,
-  imports: [MatIcon,MatCard,CommonModule],
-  templateUrl: './photos-carousel.component.html',
-  styleUrl: './photos-carousel.component.scss'
+    selector: 'photos-carousel',
+    imports: [MatIcon, MatCard],
+    templateUrl: './photos-carousel.component.html',
+    styleUrl: './photos-carousel.component.scss'
 })
 export class PhotosCarouselComponent {
 @Input() autoplay:boolean = true;
