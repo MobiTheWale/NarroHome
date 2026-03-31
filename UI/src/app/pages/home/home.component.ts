@@ -33,18 +33,8 @@ import { RouterLink } from '@angular/router';
       <div class="features-inner">
         <div class="feature">
           <div class="feature-icon">🎉</div>
-          <h3>Events</h3>
-          <p>Regelmäßige Veranstaltungen und Feste für die ganze Gemeinschaft.</p>
-        </div>
-        <div class="feature">
-          <div class="feature-icon">📸</div>
-          <h3>Erinnerungen</h3>
-          <p>Fotos und Impressionen aus vergangenen Jahren.</p>
-        </div>
-        <div class="feature">
-          <div class="feature-icon">🤝</div>
-          <h3>Gemeinschaft</h3>
-          <p>Ein aktiver Verein mit herzlicher Atmosphäre und gelebter Tradition.</p>
+          <h3>Coming Soon...</h3>
+          <p>This Page is currently under construction.</p>
         </div>
       </div>
     </section>
