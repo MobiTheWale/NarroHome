@@ -11,7 +11,7 @@ import { CommonModule } from '@angular/common';
       <div class="nav-inner">
         <a class="logo" routerLink="/">
           <span class="logo-mark">N</span>
-          <span class="logo-text">Narroparty</span>
+          <span class="logo-text">Narrogruppe Oberkirch e.V.</span>
         </a>
 
         <button class="burger" (click)="toggleMenu()" [class.open]="menuOpen()">

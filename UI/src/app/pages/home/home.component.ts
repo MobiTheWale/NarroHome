@@ -8,9 +8,8 @@ import { RouterLink } from '@angular/router';
   template: `
     <section class="hero">
       <div class="hero-content">
-        <span class="badge">Willkommen</span>
-        <h1>Gemeinsam feiern,<br><em>gemeinsam erleben.</em></h1>
-        <p>Dein Verein für unvergessliche Feste, traditionelle Narropartys und lebendige Gemeinschaft.</p>
+        <h1>Narri<br><em>Narro</em></h1>
+        <p>Willkommen auf der Homepage der Narrogruppe Oberkirch e.V.</p>
         <div class="cta-group">
           <a routerLink="/narroparty" class="btn btn-primary">Zur Narroparty</a>
           <a routerLink="/fotos" class="btn btn-ghost">Fotos ansehen</a>
