@@ -10,22 +10,23 @@ import { Component } from '@angular/core';
 
       <section>
         <h2>Herausgeber</h2>
-        <p>Narroparty e.V.<br>
-        Musterstraße 1<br>
-        12345 Musterdorf<br>
+        <p>Narro-Gruppe Oberkirch e.V.<br>
+        Gaisbacher Straße 36<br>
+        77704 Oberkirch<br>
         Deutschland</p>
       </section>
 
       <section>
         <h2>Vertreten durch</h2>
-        <p>Max Mustermann (1. Vorsitzender)<br>
-        Erika Musterfrau (2. Vorsitzende)</p>
+        <p>Carmen Strack (1. Vorstand)<br>
+        Markus Zimmmermann (2. Vorstand)<br>
+        Sascha Späth (3. Vorstand)</p>
       </section>
 
       <section>
         <h2>Kontakt</h2>
-        <p>Telefon: +49 (0) 123 456 789<br>
-        E-Mail: <a href="mailto:info@narroparty.de">info&#64;narroparty.de</a></p>
+        <p>Telefon: +49 (0)7802 4903<br>
+        E-Mail: <a href="mailto:Obernarro@narro-oberkirch.de">Obernarro&#64;narro-oberkirch.de</a></p>
       </section>
 
       <section>
@@ -36,9 +37,9 @@ import { Component } from '@angular/core';
 
       <section>
         <h2>Verantwortlich für den Inhalt (§ 55 Abs. 2 RStV)</h2>
-        <p>Max Mustermann<br>
-        Musterstraße 1<br>
-        12345 Musterdorf</p>
+        <p>Carmen Strack<br>
+        Gaisbacher Straße 36<br>
+        77704 Oberkirch</p>
       </section>
 
       <section>
