@@ -1,0 +1,41 @@
+version: '3.9'
+
+services:
+  narroparty-app:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    container_name: narroparty-app
+    ports:
+      - "80:80"
+    restart: unless-stopped
+    environment:
+      - TZ=Europe/Berlin
+    healthcheck:
+      test: ["CMD", "wget", "-qO-", "http://localhost/health"]
+      interval: 30s
+      timeout: 5s
+      retries: 3
+      start_period: 10s
+
+  # Optional: HTTPS mit Traefik (für Cloud-Deployment)
+  # Kommentiere diesen Block ein, wenn du Traefik als Reverse Proxy nutzt:
+  #
+  # traefik:
+  #   image: traefik:v3.0
+  #   command:
+  #     - "--providers.docker=true"
+  #     - "--entrypoints.web.address=:80"
+  #     - "--entrypoints.websecure.address=:443"
+  #     - "--certificatesresolvers.le.acme.tlschallenge=true"
+  #     - "--certificatesresolvers.le.acme.email=deine@email.de"
+  #     - "--certificatesresolvers.le.acme.storage=/letsencrypt/acme.json"
+  #   ports:
+  #     - "80:80"
+  #     - "443:443"
+  #   volumes:
+  #     - "/var/run/docker.sock:/var/run/docker.sock:ro"
+  #     - "letsencrypt:/letsencrypt"
+  #
+  # volumes:
+  #   letsencrypt:
