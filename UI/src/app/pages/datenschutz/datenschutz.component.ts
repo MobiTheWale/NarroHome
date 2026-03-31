@@ -16,9 +16,9 @@ import { Component } from '@angular/core';
 
       <section>
         <h2>2. Verantwortliche Stelle</h2>
-        <p>Narroparty e.V.<br>
-        Musterstraße 1, 12345 Musterdorf<br>
-        E-Mail: <a href="mailto:info@narroparty.de">info&#64;narroparty.de</a></p>
+        <p>Narrogruppe Oberkirch e.V.<br>
+        Gaisbacher Straße 36<br> 77704 Oberkirch<br>
+        E-Mail: <a href="mailto:Obernarro@narro-oberkirch.de">Obernarro&#64;narro-oberkirch.de</a></p>
       </section>
 
       <section>
