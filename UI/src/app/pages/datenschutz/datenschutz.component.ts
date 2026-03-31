@@ -32,7 +32,7 @@ import { Component } from '@angular/core';
       <section>
         <h2>4. Ihre Rechte</h2>
         <p>Sie haben jederzeit das Recht auf unentgeltliche Auskunft über Ihre gespeicherten personenbezogenen Daten, deren Herkunft und Empfänger sowie den Zweck der Datenverarbeitung. Außerdem haben Sie ein Recht auf Berichtigung oder Löschung dieser Daten.</p>
-        <p style="margin-top: 0.75rem">Hierzu sowie zu weiteren Fragen zum Thema Datenschutz können Sie sich jederzeit an uns wenden unter: <a href="mailto:info@narroparty.de">info&#64;narroparty.de</a></p>
+        <p style="margin-top: 0.75rem">Hierzu sowie zu weiteren Fragen zum Thema Datenschutz können Sie sich jederzeit an uns wenden unter: <a href="mailto:Obernarro@narro-oberkirch.de">Obernarro&#64;narro-oberkirch.de</a></p>
       </section>
 
       <section>

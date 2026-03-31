@@ -8,7 +8,7 @@ import { RouterLink } from '@angular/router';
   template: `
     <footer>
       <div class="footer-inner">
-        <p class="copy">&copy; {{ year }} Narroparty e.V.</p>
+        <p class="copy">&copy; {{ year }} Narrogruppe Oberkirch e.V.</p>
         <nav>
           <a routerLink="/impressum">Impressum</a>
           <a routerLink="/datenschutz">Datenschutz</a>
