@@ -62,7 +62,7 @@ h2 {
 
 .prog { display: flex; align-items: center; gap: 1rem; }
 
-.prog-time {
+.prog-highlight {
   font-size: 0.8rem; font-weight: 600; color: var(--accent);
   background: var(--accent-soft); padding: 0.2rem 0.6rem;
   border-radius: 6px; min-width: 52px; text-align: center;

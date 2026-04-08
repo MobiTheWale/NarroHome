@@ -76,9 +76,16 @@ h1 em { font-style: italic; color: var(--accent); }
   background: var(--surface);
 }
 
-.hero-visual {
+.logo {
   position: relative;
   height: 480px;
+}
+.logo-img {
+  position: absolute;
+  top: 50%; left: 50%;
+  transform: translate(-50%, -50%);
+  width: 320px; height: auto;
+  opacity: 0.1;
 }
 
 .shape {
@@ -88,7 +95,7 @@ h1 em { font-style: italic; color: var(--accent); }
 
 .shape-1 {
   width: 320px; height: 320px;
-  background: linear-gradient(135deg, #f5e6e0 0%, #fce4dc 100%);
+  background: linear-gradient(135deg,#fb542b 0%, #fce4dc 100%);
   top: 40px; right: 0;
 }
 
