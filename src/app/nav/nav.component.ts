@@ -1,10 +1,10 @@
 import { Component, HostListener, signal } from '@angular/core';
 import { RouterLink, RouterLinkActive } from '@angular/router';
-import { CommonModule } from '@angular/common';
+
 
 @Component({
     selector: 'app-nav',
-    imports: [RouterLink, RouterLinkActive, CommonModule],
+    imports: [RouterLink, RouterLinkActive],
     template: `
     <nav [class.scrolled]="isScrolled()">
       <div class="nav-inner">
