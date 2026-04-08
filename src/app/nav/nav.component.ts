@@ -3,10 +3,9 @@ import { RouterLink, RouterLinkActive } from '@angular/router';
 import { CommonModule } from '@angular/common';
 
 @Component({
-  selector: 'app-nav',
-  standalone: true,
-  imports: [RouterLink, RouterLinkActive, CommonModule],
-  template: `
+    selector: 'app-nav',
+    imports: [RouterLink, RouterLinkActive, CommonModule],
+    template: `
     <nav [class.scrolled]="isScrolled()">
       <div class="nav-inner">
         <a class="logo" routerLink="/">
@@ -28,7 +27,7 @@ import { CommonModule } from '@angular/common';
       </div>
     </nav>
   `,
-  styles: [`
+    styles: [`
     nav {
       position: fixed;
       top: 0; left: 0; right: 0;

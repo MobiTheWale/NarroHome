@@ -2,10 +2,9 @@ import { Component } from '@angular/core';
 import { NgFor } from '@angular/common';
 
 @Component({
-  selector: 'app-fotos',
-  standalone: true,
-  imports: [NgFor],
-  template: `
+    selector: 'app-fotos',
+    imports: [NgFor],
+    template: `
     <div class="page">
       <div class="page-header">
         <span class="badge">Galerie</span>
@@ -23,7 +22,7 @@ import { NgFor } from '@angular/common';
       </div>
     </div>
   `,
-  styles: [`
+    styles: [`
     .page { max-width: 1200px; margin: 0 auto; padding: 6rem 2rem 4rem; }
     .page-header { margin-bottom: 3rem; }
     .badge {
