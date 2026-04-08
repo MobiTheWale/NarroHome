@@ -1,36 +1,40 @@
-name: Deploy
+name: Deploy to Firebase Hosting
 
 on:
   push:
-    branches: [main]
+    branches:
+      - main
 
 jobs:
-  deploy:
+  build-and-deploy:
+    name: Build & Deploy
     runs-on: ubuntu-latest
+
     steps:
-      - uses: actions/checkout@v4
+      # 1. Code auschecken
+      - name: Checkout
+        uses: actions/checkout@v4
 
-      - name: Build & Push Docker Image
-        run: |
-          docker build -t narroparty-app .
-          docker save narroparty-app | gzip > app.tar.gz
-
-      - name: Deploy to Server
-        uses: appleboy/scp-action@v0.1.7
+      # 2. Node.js einrichten
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
         with:
-          host: ${{ secrets.SERVER_HOST }}
-          username: ${{ secrets.SERVER_USER }}
-          key: ${{ secrets.SSH_KEY }}
-          source: "docker-compose.yml,app.tar.gz"
-          target: "/opt/narroparty"
+          node-version: "20"
+          cache: "npm"
 
-      - name: Restart Container
-        uses: appleboy/ssh-action@v1.0.3
+      # 3. Abhängigkeiten installieren
+      - name: Install dependencies
+        run: npm ci --legacy-peer-deps
+
+      # 4. Angular Production Build
+      - name: Build Angular App
+        run: npm run build:prod
+
+      # 5. Auf Firebase Hosting deployen
+      - name: Deploy to Firebase Hosting
+        uses: FirebaseExtended/action-hosting-deploy@v0
         with:
-          host: ${{ secrets.SERVER_HOST }}
-          username: ${{ secrets.SERVER_USER }}
-          key: ${{ secrets.SSH_KEY }}
-          script: |
-            cd /opt/narroparty
-            docker load < app.tar.gz
-            docker-compose up -d
+          repoToken: ${{ secrets.GITHUB_TOKEN }}
+          firebaseServiceAccount: ${{ secrets.FIREBASE_SERVICE_ACCOUNT }}
+          channelId: live
+          projectId: narrohome-6c4c0
