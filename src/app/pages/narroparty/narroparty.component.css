@@ -1,0 +1,111 @@
+.page { max-width: 1200px; margin: 0 auto; padding: 6rem 2rem 4rem; }
+
+.page-header { margin-bottom: 3rem; }
+
+.badge {
+  display: inline-block; font-size: 0.75rem; font-weight: 600;
+  letter-spacing: 0.1em; text-transform: uppercase;
+  color: var(--accent); background: var(--accent-soft);
+  padding: 0.35rem 0.85rem; border-radius: 999px; margin-bottom: 1rem;
+}
+
+h1 {
+  font-family: 'Playfair Display', serif;
+  font-size: clamp(2rem, 4vw, 3rem);
+  color: var(--ink); margin: 0 0 0.75rem;
+}
+
+.page-header p { color: var(--muted); font-size: 1rem; }
+
+.event-grid {
+  display: grid; grid-template-columns: 1fr 320px; gap: 2rem; align-items: start;
+}
+
+.event-main { display: flex; flex-direction: column; gap: 1.5rem; }
+
+.info-card, .desc-card {
+  background: white; border: 1px solid var(--border);
+  border-radius: 16px; padding: 2rem;
+}
+
+h2 {
+  font-family: 'Playfair Display', serif; font-size: 1.35rem;
+  color: var(--ink); margin: 0 0 1.5rem;
+}
+
+.detail-list {
+  list-style: none; margin: 0; padding: 0;
+  display: flex; flex-direction: column; gap: 1rem;
+}
+
+.detail-list li {
+  display: flex; align-items: flex-start; gap: 0.875rem;
+  padding-bottom: 1rem; border-bottom: 1px solid var(--border);
+}
+
+.detail-list li:last-child { border: none; padding: 0; }
+
+.detail-icon { font-size: 1.25rem; margin-top: 2px; }
+
+.detail-list div { display: flex; flex-direction: column; gap: 0.1rem; }
+
+.detail-list strong {
+  font-size: 0.8rem; text-transform: uppercase;
+  letter-spacing: 0.06em; color: var(--muted);
+}
+
+.detail-list span { color: var(--ink); font-size: 0.95rem; font-weight: 500; }
+
+.desc-card p { color: var(--muted); line-height: 1.7; margin-bottom: 1.5rem; }
+
+.program-items { display: flex; flex-direction: column; gap: 0.75rem; }
+
+.prog { display: flex; align-items: center; gap: 1rem; }
+
+.prog-time {
+  font-size: 0.8rem; font-weight: 600; color: var(--accent);
+  background: var(--accent-soft); padding: 0.2rem 0.6rem;
+  border-radius: 6px; min-width: 52px; text-align: center;
+}
+
+.prog-label { color: var(--ink); font-size: 0.9rem; }
+
+.sidebar { display: flex; flex-direction: column; gap: 1rem; }
+
+.ticket-card {
+  background: var(--ink); color: white;
+  border-radius: 16px; padding: 2rem; text-align: center;
+}
+
+.ticket-header { font-size: 2.5rem; margin-bottom: 1rem; }
+
+.ticket-card h3 {
+  font-family: 'Playfair Display', serif; font-size: 1.4rem;
+  color: white; margin: 0 0 0.75rem;
+}
+
+.ticket-card p { color: rgba(255,255,255,0.65); font-size: 0.9rem; margin-bottom: 1.5rem; }
+
+.btn-ticket {
+  display: block; background: var(--accent); color: white;
+  text-decoration: none; padding: 0.85rem; border-radius: 10px;
+  font-weight: 600; font-size: 0.9rem;
+  transition: background 0.2s, transform 0.2s;
+}
+
+.btn-ticket:hover { background: var(--accent-dark); transform: translateY(-1px); }
+
+.contact-card {
+  background: var(--surface); border: 1px solid var(--border);
+  border-radius: 16px; padding: 1.5rem;
+}
+
+.contact-card h4 { font-size: 0.9rem; color: var(--ink); margin: 0 0 0.5rem; font-weight: 600; }
+
+.contact-card p { color: var(--muted); font-size: 0.875rem; margin-bottom: 0.75rem; }
+
+.contact-card a { color: var(--accent); font-size: 0.875rem; }
+
+@media (max-width: 900px) {
+  .event-grid { grid-template-columns: 1fr; }
+}

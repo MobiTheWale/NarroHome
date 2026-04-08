@@ -1,0 +1,20 @@
+<nav [class.scrolled]="isScrolled()">
+  <div class="nav-inner">
+    <a class="logo" routerLink="/">
+      <span class="logo-mark">N</span>
+      <span class="logo-text">Narrogruppe Oberkirch e.V.</span>
+    </a>
+
+    <button class="burger" (click)="toggleMenu()" [class.open]="menuOpen()">
+      <span></span><span></span><span></span>
+    </button>
+
+    <ul [class.open]="menuOpen()" (click)="closeMenu()">
+      <li><a routerLink="/" routerLinkActive="active" [routerLinkActiveOptions]="{exact:true}">Home</a></li>
+      <li><a routerLink="/fotos" routerLinkActive="active">Fotos</a></li>
+      <li><a routerLink="/narroparty" routerLinkActive="active">Narroparty</a></li>
+      <li><a routerLink="/impressum" routerLinkActive="active">Impressum</a></li>
+      <li><a routerLink="/datenschutz" routerLinkActive="active">Datenschutz</a></li>
+    </ul>
+  </div>
+</nav>
