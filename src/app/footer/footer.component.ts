@@ -2,10 +2,9 @@ import { Component } from '@angular/core';
 import { RouterLink } from '@angular/router';
 
 @Component({
-  selector: 'app-footer',
-  standalone: true,
-  imports: [RouterLink],
-  template: `
+    selector: 'app-footer',
+    imports: [RouterLink],
+    template: `
     <footer>
       <div class="footer-inner">
         <p class="copy">&copy; {{ year }} Narrogruppe Oberkirch e.V.</p>
@@ -16,7 +15,7 @@ import { RouterLink } from '@angular/router';
       </div>
     </footer>
   `,
-  styles: [`
+    styles: [`
     footer {
       border-top: 1px solid var(--border);
       height: 80px;

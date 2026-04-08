@@ -1,29 +1,30 @@
 import { Component } from '@angular/core';
-import { NgFor } from '@angular/common';
+
 
 @Component({
-  selector: 'app-fotos',
-  standalone: true,
-  imports: [NgFor],
-  template: `
+    selector: 'app-fotos',
+    imports: [],
+    template: `
     <div class="page">
       <div class="page-header">
         <span class="badge">Galerie</span>
         <h1>Fotos</h1>
         <p>Eindrücke und Erinnerungen aus unseren Veranstaltungen.</p>
       </div>
-
+    
       <div class="gallery">
-        <div class="gallery-item" *ngFor="let item of placeholders; let i = index"
-             [style.grid-row]="item.tall ? 'span 2' : 'span 1'">
-          <div class="placeholder" [style.background]="item.bg">
-            <span>{{ item.label }}</span>
+        @for (item of placeholders; track item; let i = $index) {
+          <div class="gallery-item"
+            [style.grid-row]="item.tall ? 'span 2' : 'span 1'">
+            <div class="placeholder" [style.background]="item.bg">
+              <span>{{ item.label }}</span>
+            </div>
           </div>
-        </div>
+        }
       </div>
     </div>
-  `,
-  styles: [`
+    `,
+    styles: [`
     .page { max-width: 1200px; margin: 0 auto; padding: 6rem 2rem 4rem; }
     .page-header { margin-bottom: 3rem; }
     .badge {

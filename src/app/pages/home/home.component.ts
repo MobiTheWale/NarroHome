@@ -2,10 +2,9 @@ import { Component } from '@angular/core';
 import { RouterLink } from '@angular/router';
 
 @Component({
-  selector: 'app-home',
-  standalone: true,
-  imports: [RouterLink],
-  template: `
+    selector: 'app-home',
+    imports: [RouterLink],
+    template: `
     <section class="hero">
       <div class="hero-content">
         <h1>Narri<br><em>Narro</em></h1>
@@ -39,7 +38,7 @@ import { RouterLink } from '@angular/router';
       </div>
     </section>
   `,
-  styles: [`
+    styles: [`
     .hero {
       min-height: calc(100vh - 64px);
       max-width: 1200px;
