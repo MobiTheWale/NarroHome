@@ -6,5 +6,6 @@ export const routes: Routes = [
   { path: 'narroparty', loadComponent: () => import('./pages/narroparty/narroparty.component').then(m => m.NarropartyComponent) },
   { path: 'impressum', loadComponent: () => import('./pages/impressum/impressum.component').then(m => m.ImpressumComponent) },
   { path: 'datenschutz', loadComponent: () => import('./pages/datenschutz/datenschutz.component').then(m => m.DatenschutzComponent) },
+  { path: 'members', loadComponent: () => import('./pages/members/members.component').then(m => m.MembersComponent) },
   { path: '**', redirectTo: '' }
 ];
