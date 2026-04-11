@@ -1,32 +1,63 @@
-# 🎭 Narroparty e.V. – Angular App
+# 🎭 NarroHome – Narro-Gruppe Oberkirch e.V.
 
-Vereins- und Eventwebsite für Narroparty e.V., gebaut mit **Angular 17** (Standalone Components) und deploybar via **Docker + nginx**.
+Offizielle Website der **Narro-Gruppe Oberkirch e.V.**, gebaut mit Angular 21 und deployed via Firebase Hosting.
 
 ---
 
-## 📁 Projektstruktur
+## 📋 Inhaltsverzeichnis
+
+- [Tech Stack](#tech-stack)
+- [Projektstruktur](#projektstruktur)
+- [Lokale Entwicklung](#lokale-entwicklung)
+- [Deployment](#deployment)
+- [Seiten & Komponenten](#seiten--komponenten)
+- [Anpassungen](#anpassungen)
+
+---
+
+## Tech Stack
+
+| Technologie      | Version | Zweck              |
+| ---------------- | ------- | ------------------ |
+| Angular          | 21.2.x  | Frontend Framework |
+| TypeScript       | 5.9.x   | Sprache            |
+| Vite             | 6.4.x   | Build Tool         |
+| Firebase Hosting | –       | Hosting & CDN      |
+| GitHub Actions   | –       | CI/CD Pipeline     |
+
+---
+
+## Projektstruktur
 
 ```
-narroparty-app/
+NarroHome/
 ├── src/
 │   ├── app/
-│   │   ├── nav/                  # Navigationskomponente
-│   │   ├── footer/               # Footer-Komponente
-│   │   ├── pages/
-│   │   │   ├── home/             # Startseite
-│   │   │   ├── fotos/            # Fotogalerie
-│   │   │   ├── narroparty/       # Event-Detailseite
-│   │   │   ├── impressum/        # Impressum
-│   │   │   └── datenschutz/      # Datenschutzerklärung
-│   │   ├── app.component.ts
-│   │   ├── app.config.ts
-│   │   └── app.routes.ts
-│   ├── styles.css                # Globale CSS-Variablen & Fonts
+│   │   ├── app.component.ts/html/css   # Root-Komponente (Nav + Outlet + Footer)
+│   │   ├── app.config.ts               # Angular App-Konfiguration & Router
+│   │   ├── app.routes.ts               # Lazy-Loading Routen
+│   │   ├── nav/                        # Navigationsleiste (sticky, responsive)
+│   │   │   ├── nav.component.ts
+│   │   │   ├── nav.component.html
+│   │   │   └── nav.component.css
+│   │   ├── footer/                     # Footer mit Links
+│   │   │   ├── footer.component.ts
+│   │   │   ├── footer.component.html
+│   │   │   └── footer.component.css
+│   │   └── pages/
+│   │       ├── home/                   # Startseite mit Hero & Features
+│   │       ├── fotos/                  # Bildergalerie (Masonry-Grid)
+│   │       ├── narroparty/             # Eventseite mit Programm & Tickets
+│   │       ├── impressum/              # Impressum (§ 5 TMG)
+│   │       └── datenschutz/            # Datenschutzerklärung (DSGVO)
+│   ├── styles.css                      # Globale CSS-Variablen & Google Fonts
 │   ├── index.html
 │   └── main.ts
-├── Dockerfile                    # Multi-stage Build (Node → nginx)
-├── docker-compose.yml
-├── nginx.conf                    # SPA-Routing + Gzip + Security Headers
+├── .github/
+│   └── workflows/
+│       └── deploy.yml                  # GitHub Actions: Build & Firebase Deploy
+├── firebase.json                       # Firebase Hosting Konfiguration
+├── .firebaserc                         # Firebase Projekt-ID
 ├── angular.json
 ├── package.json
 └── tsconfig.json
@@ -34,141 +65,151 @@ narroparty-app/
 
 ---
 
-## 🚀 Lokale Entwicklung
+## Lokale Entwicklung
 
 ### Voraussetzungen
-- Node.js 20+
-- Angular CLI 17+
+
+- **Node.js** 20 oder höher → [nodejs.org](https://nodejs.org)
+- **Angular CLI** 21
 
 ```bash
-# Abhängigkeiten installieren
+npm install -g @angular/cli
+```
+
+### Installation & Start
+
+```bash
+# 1. Abhängigkeiten installieren
 npm install
 
-# Entwicklungsserver starten (http://localhost:4200)
+# 2. Entwicklungsserver starten
 npm start
 ```
 
----
+Die App läuft dann unter **http://localhost:4200** mit automatischem Hot-Reload.
 
-## 🐳 Docker – Lokaler Test
-
-```bash
-# Image bauen
-docker build -t narroparty-app .
-
-# Container starten (http://localhost)
-docker run -p 80:80 narroparty-app
-
-# Oder mit docker-compose
-docker-compose up --build
-```
-
----
-
-## ☁️ Cloud Deployment
-
-### Option 1 – VPS / Root-Server (empfohlen)
+### Produktions-Build lokal testen
 
 ```bash
-# 1. Projekt auf den Server kopieren
-scp -r ./narroparty-app user@dein-server.de:/opt/narroparty
-
-# 2. Per SSH verbinden
-ssh user@dein-server.de
-
-# 3. In das Projektverzeichnis wechseln
-cd /opt/narroparty
-
-# 4. Starten
-docker-compose up -d --build
-
-# 5. Status prüfen
-docker-compose ps
-docker-compose logs -f
+npm run build:prod
 ```
 
-### Option 2 – GitHub Actions CI/CD
+Der Build-Output liegt unter `dist/narroparty-app/browser/`.
 
-Erstelle `.github/workflows/deploy.yml`:
+---
 
-```yaml
-name: Deploy
+## Deployment
 
-on:
-  push:
-    branches: [main]
+### Automatisch via GitHub Actions (empfohlen)
 
-jobs:
-  deploy:
-    runs-on: ubuntu-latest
-    steps:
-      - uses: actions/checkout@v4
+Bei jedem Push auf den `main`-Branch wird die App automatisch gebaut und auf Firebase Hosting deployed.
 
-      - name: Build & Push Docker Image
-        run: |
-          docker build -t narroparty-app .
-          docker save narroparty-app | gzip > app.tar.gz
+**Einmalige Einrichtung:**
 
-      - name: Deploy to Server
-        uses: appleboy/scp-action@v0.1.7
-        with:
-          host: ${{ secrets.SERVER_HOST }}
-          username: ${{ secrets.SERVER_USER }}
-          key: ${{ secrets.SSH_KEY }}
-          source: "docker-compose.yml,app.tar.gz"
-          target: "/opt/narroparty"
+1. Firebase Projekt anlegen unter [console.firebase.google.com](https://console.firebase.google.com)
+2. Projekt-ID in `.firebaserc` und `.github/workflows/deploy.yml` eintragen
+3. Service Account Key generieren:
+   - Firebase Console → ⚙️ Projekteinstellungen → Dienstkonten
+   - „Neuen privaten Schlüssel generieren" → JSON herunterladen
+4. In GitHub Repository → Settings → Secrets → Actions:
+   - Secret `FIREBASE_SERVICE_ACCOUNT` anlegen → gesamten JSON-Inhalt einfügen
 
-      - name: Restart Container
-        uses: appleboy/ssh-action@v1.0.3
-        with:
-          host: ${{ secrets.SERVER_HOST }}
-          username: ${{ secrets.SERVER_USER }}
-          key: ${{ secrets.SSH_KEY }}
-          script: |
-            cd /opt/narroparty
-            docker load < app.tar.gz
-            docker-compose up -d
-```
+Ab dann reicht:
 
-### Option 3 – Managed Cloud (Render, Railway, Fly.io)
-
-**Render.com** (kostenloser Plan verfügbar):
-1. Neues "Web Service" erstellen
-2. GitHub-Repository verbinden
-3. Build Command: `docker build -t app .`
-4. Start Command: wird automatisch aus Dockerfile gelesen
-5. Port: `80`
-
-**Fly.io:**
 ```bash
-fly launch
-fly deploy
+git push origin main
+# → GitHub Actions baut & deployed automatisch
+```
+
+Die App ist erreichbar unter: `https://DEIN-PROJECT-ID.web.app`
+
+### Manuell via Firebase CLI
+
+```bash
+# Firebase CLI installieren (einmalig)
+npm install -g firebase-tools
+
+# Einloggen
+firebase login
+
+# Build & Deploy
+npm run build:prod
+firebase deploy
 ```
 
 ---
 
-## 🔒 HTTPS mit Let's Encrypt (Traefik)
+## Seiten & Komponenten
 
-Kommentiere den Traefik-Block in `docker-compose.yml` ein und passe deine E-Mail-Adresse an. Traefik übernimmt dann automatisch SSL-Zertifikate via Let's Encrypt.
+| Route          | Komponente             | Beschreibung                                   |
+| -------------- | ---------------------- | ---------------------------------------------- |
+| `/`            | `HomeComponent`        | Startseite mit Hero-Bereich und Vereinsinfo    |
+| `/fotos`       | `FotosComponent`       | Fotogalerie vergangener Veranstaltungen        |
+| `/narroparty`  | `NarropartyComponent`  | Infos zur Narroparty: Datum, Programm, Tickets |
+| `/impressum`   | `ImpressumComponent`   | Pflichtangaben gemäß § 5 TMG                   |
+| `/datenschutz` | `DatenschutzComponent` | Datenschutzerklärung gemäß DSGVO               |
+
+**Globale Komponenten:**
+
+- `NavComponent` – Fixierte Navigationsleiste mit Scroll-Effekt und mobilem Burger-Menü
+- `FooterComponent` – Footer mit Copyright und rechtlichen Links
 
 ---
 
-## 🎨 Anpassungen
+## Anpassungen
 
-| Was | Wo |
-|---|---|
-| Vereinsname / Kontakt | `impressum.component.ts`, `datenschutz.component.ts` |
-| Event-Details (Datum, Ort) | `narroparty.component.ts` |
-| Farben / Design-Variablen | `src/styles.css` `:root` Block |
-| Navigation-Links | `nav.component.ts` |
-| Fotos einfügen | `fotos.component.ts` → `.placeholder` durch `<img>` ersetzen |
+### Vereinsdaten ändern
+
+| Was                         | Datei                                                  |
+| --------------------------- | ------------------------------------------------------ |
+| Name & Adresse im Impressum | `src/app/pages/impressum/impressum.component.html`     |
+| Kontakt & Datenschutz       | `src/app/pages/datenschutz/datenschutz.component.html` |
+| Logo-Text in der Navigation | `src/app/nav/nav.component.html`                       |
+| Copyright im Footer         | `src/app/footer/footer.component.html`                 |
+
+### Event-Details (Narroparty)
+
+Datum, Uhrzeit, Ort und Programm anpassen in:
+
+```
+src/app/pages/narroparty/narroparty.component.html
+```
+
+### Design & Farben
+
+Alle Designvariablen sind zentral in `src/styles.css` definiert:
+
+```css
+:root {
+  --accent: #d94632; /* Hauptfarbe (Rot) */
+  --accent-dark: #b33828; /* Hover-Zustand */
+  --accent-soft: #fdf0ee; /* Heller Akzent-Hintergrund */
+  --ink: #1a1a1a; /* Textfarbe */
+  --muted: #6b6b6b; /* Sekundärtext */
+  --border: #e8e8e8; /* Rahmenfarbe */
+  --surface: #f9f9f9; /* Hintergrund Sektionen */
+}
+```
+
+### Fotos einfügen
+
+In `src/app/pages/fotos/fotos.component.html` die Platzhalter durch echte Bilder ersetzen:
+
+```html
+<!-- Vorher: -->
+<div class="placeholder" [style.background]="item.bg">
+  <span>{{ item.label }}</span>
+</div>
+
+<!-- Nachher: -->
+<img src="assets/fotos/narroparty-2025.jpg" alt="Narroparty 2025" />
+```
+
+Bilder in `src/assets/fotos/` ablegen.
 
 ---
 
-## 📦 Technologien
+## Kontakt
 
-- **Angular 17** – Standalone Components, Lazy Loading, View Transitions API
-- **TypeScript 5.2**
-- **nginx 1.25** – SPA Routing, Gzip, Security Headers
-- **Docker** – Multi-stage Build (~25 MB finales Image)
-- **Google Fonts** – Playfair Display + DM Sans
+**Moritz Binder**
+✉️ [Moritz.binder03@gmail.com](mailto:Moritz.binder03@gmail.com)
