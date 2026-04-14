@@ -3,15 +3,32 @@
     <span class="badge">Galerie</span>
     <h1>Fotos</h1>
     <p>Eindrücke und Erinnerungen aus unseren Veranstaltungen.</p>
+    
   </div>
-
-  <div class="gallery">
-    @for (item of placeholders; track item; let i = $index) {
-      <div class="gallery-item" [style.grid-row]="item.tall ? 'span 2' : 'span 1'">
-        <div class="placeholder" [style.background]="item.bg">
-          <span>{{ item.label }}</span>
-        </div>
+    <div class="card flex justify-center">
+   <p-accordion>
+    <p-accordion-panel value="0">
+      <p-accordion-header>Kampagne 2026</p-accordion-header>
+      <p-accordion-content>
+        <p-accordion [(value)]="currentSubPanel">
+          <p-accordion-panel value="0">
+            <p-accordion-header>Veranstaltung 1</p-accordion-header>
+            <p-accordion-content>
+              <foto-slider [images]="sliderImages" [showIndicators]="true" [autoPlay]="true"></foto-slider>
+            </p-accordion-content>
+          </p-accordion-panel>
+        </p-accordion>
+        <p-accordion [(value)]="currentSubPanel">
+          <p-accordion-panel value="1">
+            <p-accordion-header>Veranstaltung 2</p-accordion-header>
+            <p-accordion-content>
+              <foto-slider [images]="sliderImages" [showIndicators]="true" [autoPlay]="true"></foto-slider>
+            </p-accordion-content>
+          </p-accordion-panel>
+        </p-accordion> 
+      </p-accordion-content>
+    </p-accordion-panel>
+      </p-accordion>
       </div>
-    }
-  </div>
+  
 </div>

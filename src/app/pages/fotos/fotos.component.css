@@ -42,3 +42,6 @@ p { color: var(--muted); font-size: 1rem; }
 @media (max-width: 480px) {
   .gallery { grid-template-columns: 1fr; }
 }
+.p-accordion .p-accordion-tab {
+  border: 1px solid #dee2e6;
+}

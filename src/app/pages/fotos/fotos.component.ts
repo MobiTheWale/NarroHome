@@ -1,8 +1,10 @@
 import { Component } from '@angular/core';
+import { FotoSliderComponent, SliderImage } from "../../shared/component/foto-slider/foto-slider.component";
+import { AccordionModule,  } from "primeng/accordion";
 
 @Component({
   selector: 'app-fotos',
-  imports: [],
+  imports: [FotoSliderComponent,AccordionModule],
   templateUrl: './fotos.component.html',
   styleUrl: './fotos.component.css'
 })
@@ -17,4 +19,8 @@ export class FotosComponent {
     { label: 'Frühjahr', bg: '#e8f5ec', tall: false },
     { label: 'Herbstfest', bg: '#f5ede8', tall: false },
   ];
+sliderImages: SliderImage[]=new Array(10).fill(0).map((_, i) => ({
+  src: `https://picsum.photos/800/600?random=${i + 1}`,
+  alt: `Bild ${i + 1}`,
+}));currentSubPanel: string = '0';
 }
