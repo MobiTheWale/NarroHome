@@ -1,0 +1,89 @@
+<div class="slider-wrapper">
+
+  <!-- Hauptbild -->
+  <div class="slider-main">
+    <div class="slider-image-container">
+      @if (images.length > 0) {
+        <img
+          [src]="images[activeIndex()].src"
+          [alt]="images[activeIndex()].alt"
+          class="slider-image"
+        />
+
+        <!-- Caption -->
+        @if (images[activeIndex()].title || images[activeIndex()].subtitle) {
+          <div class="slider-caption">
+            @if (images[activeIndex()].title) {
+              <span class="caption-title">{{ images[activeIndex()].title }}</span>
+            }
+            @if (images[activeIndex()].subtitle) {
+              <span class="caption-sub">{{ images[activeIndex()].subtitle }}</span>
+            }
+          </div>
+        }
+      } @else {
+        <div class="slider-empty">
+          <i class="pi pi-images"></i>
+          <span>Keine Bilder vorhanden</span>
+        </div>
+      }
+    </div>
+
+    <!-- Navigation Buttons -->
+    <p-button
+      class="nav-btn nav-btn-prev"
+      icon="pi pi-chevron-left"
+      [rounded]="true"
+      severity="secondary"
+      (onClick)="prev()"
+      [disabled]="images.length <= 1"
+      aria-label="Vorheriges Bild"
+    />
+
+    <p-button
+      class="nav-btn nav-btn-next"
+      icon="pi pi-chevron-right"
+      [rounded]="true"
+      severity="secondary"
+      (onClick)="next()"
+      [disabled]="images.length <= 1"
+      aria-label="Nächstes Bild"
+    />
+
+    <!-- Zähler -->
+    <div class="slide-counter">
+      {{ activeIndex() + 1 }} / {{ totalImages() }}
+    </div>
+  </div>
+
+  <!-- Indikatoren (Dots) -->
+  @if (showIndicators && images.length > 1) {
+    <div class="slider-indicators">
+      @for (img of images; track img.src; let i = $index) {
+        <button
+          class="indicator-dot"
+          [class.active]="i === activeIndex()"
+          (click)="goTo(i)"
+          [attr.aria-label]="'Bild ' + (i + 1)"
+        ></button>
+      }
+    </div>
+  }
+
+  <!-- Thumbnails -->
+  @if (showThumbnails && images.length > 1) {
+    <div class="slider-thumbnails">
+      @for (img of images; track img.src; let i = $index) {
+        <button
+          class="thumbnail"
+          [class.active]="i === activeIndex()"
+          (click)="goTo(i)"
+          [attr.aria-label]="img.alt"
+        >
+          <img [src]="img.src" [alt]="img.alt" />
+        </button>
+      }
+    </div>
+  }
+
+</div>
