@@ -1,4 +1,4 @@
-import { Component, Input, signal, computed } from '@angular/core';
+import { Component, Input, signal, computed, ChangeDetectionStrategy } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { ButtonModule } from 'primeng/button';
 import { GalleriaModule } from 'primeng/galleria';
@@ -15,6 +15,7 @@ export interface SliderImage {
   selector: 'foto-slider',
   imports: [CommonModule, ButtonModule, GalleriaModule, TagModule],
   templateUrl: './foto-slider.component.html',
+  changeDetection: ChangeDetectionStrategy.Eager,
   styleUrl: './foto-slider.component.css'
 })
 export class FotoSliderComponent {
