@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, ChangeDetectionStrategy } from '@angular/core';
 import { FotoSliderComponent, SliderImage } from "../../shared/component/foto-slider/foto-slider.component";
 import { AccordionModule,  } from "primeng/accordion";
 
@@ -6,6 +6,7 @@ import { AccordionModule,  } from "primeng/accordion";
   selector: 'app-fotos',
   imports: [FotoSliderComponent,AccordionModule],
   templateUrl: './fotos.component.html',
+  changeDetection: ChangeDetectionStrategy.Eager,
   styleUrl: './fotos.component.css'
 })
 export class FotosComponent {
