@@ -1,39 +1,42 @@
-name: Deploy Angular Frontend to GitHub Pages
+name: Deploy to Firebase Hosting
+permissions:
+  contents: read
 
 on:
   push:
     branches:
       - main
 
-permissions:
-  contents: write   # <<--- wichtig, sonst 403 Fehler beim Push!
-
 jobs:
-  deploy:
+  build-and-deploy:
+    name: Build & Deploy
     runs-on: ubuntu-latest
 
     steps:
-      - name: Checkout repository
-        uses: actions/checkout@v3
+      # 1. Code auschecken
+      - name: Checkout
+        uses: actions/checkout@v5
 
+      # 2. Node.js einrichten
       - name: Setup Node.js
-        uses: actions/setup-node@v3
+        uses: actions/setup-node@v5
         with:
-          node-version: '18'
-          cache: 'npm'
-          cache-dependency-path: Frontend/package-lock.json
+          node-version: "24.18.0"
+          cache: "npm"
 
+      # 3. Abhängigkeiten installieren
       - name: Install dependencies
-        working-directory: ./Frontend
-        run: npm ci
+        run: npm ci --legacy-peer-deps
 
-      - name: Build Angular project
-        working-directory: ./Frontend
-        run: npm run build -- --output-path=dist/frontend --base-href /NarroHome/
+      # 4. Angular Production Build
+      - name: Build Angular App
+        run: npm run build:prod
 
-      - name: Deploy to GitHub Pages
-        uses: peaceiris/actions-gh-pages@v3
+      # 5. Auf Firebase Hosting deployen
+      - name: Deploy to Firebase Hosting
+        uses: FirebaseExtended/action-hosting-deploy@v0
         with:
-          github_token: ${{ secrets.GITHUB_TOKEN }}
-          publish_branch: gh-pages
-          publish_dir: ./Frontend/dist/frontend/browser
+          repoToken: ${{ secrets.GITHUB_TOKEN }}
+          firebaseServiceAccount: ${{ secrets.FIREBASE_SERVICE_ACCOUNT }}
+          channelId: live
+          projectId: narrohome-6c4c0
