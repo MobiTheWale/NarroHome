@@ -32,6 +32,6 @@
     "@angular/cli": "^22.0.5",
     "@angular/compiler-cli": "^22.0.5",
     "typescript": "~6.0.3",
-    "vite": "^7.3.5"
+    "vite": "^7.3.7"
   }
 }
